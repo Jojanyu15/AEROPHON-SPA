@@ -1,0 +1,38 @@
+<div *ngIf="loading" class="row text-center container-t">
+    <div class="col">
+        <i class="fa fa-spinner fa-spin fa-5x"></i>
+    </div>
+</div>
+
+<div class="container text-light animated fadeIn" *ngIf="!loading">
+    <div class="row  container-t">
+        <div class="col-md-2 text-center">
+            <img class="img-thumbnail img-circle" [src]="artista?.images[0]?.url">
+        </div>
+        <div class="col container-pa">
+            <h3>{{artista?.name}} Crew</h3>
+            <p class="text-justify">
+                Grupo de Hip Hop Bogotano conformado en el 2007 por Ruzto, Frank Takuma y Saks, con 5 Albumes y mas de 10 años de experiencia , se convirtieron en una de las bandas mas importantes del Hip Hop Latinoamericano, llevando la bandera de una generación amante
+                del Graffiti , la vida y el gusto por la música latina y el rap. Aerophon : Familia, vida, Graffiti y Rap desde el 2007.
+            </p>
+        </div>
+
+    </div>
+    <div class="container-f">
+        <div class="card-columns">
+            <div *ngFor="let cancion of toptracks | slice:1:7" class="card border-0">
+                <img [src]="cancion?.album?.images[0]?.url" class="card-img-top photo-frame" alt="...">
+                <div class="card-body no-padding">
+                    <iframe class="card-footer no-padding" [src]="cancion.uri |domseguro" width="100%" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                </div>
+                <div class="card-footer  text-muted">
+                    <h5 class="card-title">{{cancion?.name}}</h5>
+                    <p class="card-text"> <span *ngFor="let artista of cancion?.artists" class="badge badge-pill badge-primary">
+                    {{ artista.name }}
+                </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

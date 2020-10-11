@@ -1,0 +1,57 @@
+@media(min-width:762px) {
+    .text-content {
+        padding-left: 5rem;
+        padding-right: 5rem;
+    }
+}
+
+.row {
+    margin-right: 0!important;
+}
+
+@media(max-width:762px) {
+    .text-content {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media(max-width:280px) {
+    .text-content {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+@media(min-width:767px) {
+    .logo-footer {
+        width: 80%;
+    }
+}
+
+@media(min-width:330px) {
+    .logo-footer {
+        width: 50%;
+    }
+}
+
+@media(max-width:330px) {
+    .logo-footer {
+        width: 70%;
+    }
+}
+
+.padding-l {
+    /* padding-left: 4rem; */
+    margin-left: 4rem;
+}
+
+button {
+    text-align: left !important;
+}
+
+.buttona {
+    /* position: fixed; */
+    outline: none !important;
+    border: 0 !important;
+}

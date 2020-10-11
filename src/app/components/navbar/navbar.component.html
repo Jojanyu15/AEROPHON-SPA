@@ -1,0 +1,28 @@
+<nav class="navbar navbar-dark  navbar-expand-sm bg-black justify-content-center ">
+    <a class="navbar-brand brand-spacing  text-center brand-p mr-2 ml-auto" href="#">
+        <img src="/assets/icons/brand2.png" width="100rem" height="100%" alt="" loading="lazy">
+    </a>
+    <button class="navbar-toggler col-auto text-left ml-auto  b-padding" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
+        <ul class="navbar-nav mx-auto text-center menu-item ">
+            <li class="nav-item active menu-f-item ">
+                <a class="nav-link" [routerLink]="['home']">Inicio <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a [routerLink]="['acerca-de']" class="nav-link">Sobre nosotros</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Redes
+            </a>
+                <div class="dropdown-menu black-item" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item black-item" href="https://www.instagram.com/aerophonoficial/?hl=es-la">Instagram</a>
+                    <a class="dropdown-item" href="https://www.facebook.com/aerophon/">Facebook</a>
+                    <a class="dropdown-item" href="https://twitter.com/aerophonmusic">Twitter</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

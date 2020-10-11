@@ -1,0 +1,26 @@
+@media(min-width:991.98px) {
+    .size-c {
+        height: auto;
+        width: 100%;
+        padding-left: 20rem;
+        padding-right: 20rem;
+    }
+}
+
+.container-f {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.col-centered {
+    float: none;
+    margin: 0 auto;
+}
+
+@media(max-width:991.98px) {
+    .size-c {
+        height: auto;
+        width: 100%;
+        padding: 0 !important;
+    }
+}
