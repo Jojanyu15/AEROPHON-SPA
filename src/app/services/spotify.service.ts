@@ -1,5 +1,8 @@
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { rejects } from 'assert';
+import { access } from 'fs';
+import { promise } from 'protractor';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -9,41 +12,50 @@ import { map } from 'rxjs/operators';
 export class SpotifyService {
   constructor(private http: HttpClient) {}
 
-  public getArtist(): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer BQA_XBrrJWU-nWZmLByse8tfDLGDmLWVOiPHU6ObzdD4hRm_IwUaZ--_yBQAbzgaI9yHNl-Se8SrOc4tOKs',
-    });
-
+  public getAccessToken(): Promise<any> {
     return this.http
       .get(
-        'https://api.spotify.com/v1/artists/6nfNQvqechLUJaFHYAciep/',
-        { headers }
+        'https://apn-crew-spootybackend.herokuapp.com/spotify/253fcdc08f8d4e9ba5e100ef7a89cb7d/dd9ce5ca09d447d59f1f394995e09177'
       )
-      .pipe(
-        map((items) => {
-          // tslint:disable-next-line: no-string-literal
-          return items;
-        })
-      );
+      .toPromise();
   }
 
-  public getTopTracks(): Observable<any> {
-    const headers = new HttpHeaders({
-      Authorization:
-        'Bearer BQA_XBrrJWU-nWZmLByse8tfDLGDmLWVOiPHU6ObzdD4hRm_IwUaZ--_yBQAbzgaI9yHNl-Se8SrOc4tOKs',
-    });
-
-    return this.http
-      .get(
-        'https://api.spotify.com/v1/artists/6nfNQvqechLUJaFHYAciep/top-tracks?market=CO&limit=6',
-        { headers }
-      )
-      .pipe(
-        map((items) => {
+  public getArtist(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getAccessToken().then((at) => {
+        const headers = new HttpHeaders({
           // tslint:disable-next-line: no-string-literal
-          return items['tracks'];
-        })
-      );
+          Authorization: 'Bearer ' + at['access_token'],
+        });
+        this.http
+          .get('https://api.spotify.com/v1/artists/6nfNQvqechLUJaFHYAciep/', {
+            headers,
+          })
+          .subscribe((items) => {
+            resolve(items);
+          });
+      });
+    });
+  }
+  public getTopTracks(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getAccessToken().then((at) => {
+        const headers = new HttpHeaders({
+          // tslint:disable-next-line: no-string-literal
+          Authorization: 'Bearer ' + at['access_token'],
+        });
+        this.http
+          .get(
+            'https://api.spotify.com/v1/artists/6nfNQvqechLUJaFHYAciep/top-tracks?market=CO&limit=6',
+            {
+              headers,
+            }
+          )
+          .subscribe((r) => {
+            // tslint:disable-next-line: no-string-literal
+            resolve(r['tracks']);
+          });
+      });
+    });
   }
 }

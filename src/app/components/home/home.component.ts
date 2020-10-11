@@ -13,12 +13,10 @@ export class HomeComponent implements OnInit {
 
   constructor(private ss: SpotifyService) {
     this.loading = true;
-    this.ss.getTopTracks().subscribe((response) => {
-      this.toptracks = response;
-      this.ss.getArtist().subscribe((artist) => {
-        console.log(artist);
-        console.log(response);
-        this.artista = artist;
+    this.ss.getTopTracks().then((res) => {
+      this.toptracks = res;
+      this.ss.getArtist().then((res2) => {
+        this.artista = res2;
         this.loading = false;
       });
     });
